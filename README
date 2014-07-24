@@ -1,0 +1,6 @@
+The logs are in the log directory with the code. 
+
+The code has to be attached when running the container: 
+docker run -d -p 80:80 -v /home/celine/plan-dv:/var/www celine/dig-vit-vitality-plan:centos6
+
+The Apache uid is 48 in the container => the files permission in the code directory should be given to 48 if Apache needs permission
