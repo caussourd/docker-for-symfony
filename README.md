@@ -2,19 +2,36 @@
 
 ### To make it work
 
-#### Build the image
+#### Requirements
 
-From inside this folder: 
-`# docker build -t="<user>/<name>:<tag>" .`
+ - fig
 
-#### The code is on a separate folder (not in the container). 
-Example: `/home/<myuser>/<myapp>`
- 
-#### Create a log folder in your code folder. It's where the Apache logs are going to be stored 
-Example: `mkdir /home/<myuser>/<myapp>/log`
+To install fig: http://www.fig.sh/install.html
 
-#### Give the permissions to Apache on the folder (48 is the Apache UID in the container): 
-Example: `chown -R 48:48 /home/<myuser>/<myapp>`
+#### Add your code
 
-#### Run the container
-`docker run -d -p 80:80 -v /home/<myuser>/<myapp>:/var/www <user>/<name>:<tag>`
+Add your code in a folder called `web/`
+
+#### Start the app
+
+`fig run -d`
+
+#### Good to know
+
+ - Stop the app: `fig stop`
+ - Remove the app: `fig rm`
+ - Rebuild the app: `fig build`
+
+#### Troubleshooting
+
+##### Permissions
+
+You may need to change the permissions on the web folder.
+
+Example (48 is the Apache UID in the container): `chown -R 48:48 web/`
+
+##### Database
+
+Note: the database host in your app configuration shouldn't be set to localhost (localhost is the container)
+
+Improvements: a container could be created for the DB and linked to the `symfony` container

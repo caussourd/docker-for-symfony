@@ -1,0 +1,7 @@
+symfony:
+    build: .
+    volumes:
+        - web:/var/www
+        - apache-logs:/var/log/apache2
+    ports:
+        - "80:80"
